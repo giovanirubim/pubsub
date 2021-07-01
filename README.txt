@@ -2,6 +2,8 @@ Dependências:
 
 	* Para executar este projeto é necessário possuir instalado na máquina o Node.js a partir da
 	versão 14. https://nodejs.org/
+	* Com o Node.js instalado é necessário instalar as dependências da aplicação executando o
+	comando "npm install"
 
 Este projeto possui três scripts principais em sua execução:
 

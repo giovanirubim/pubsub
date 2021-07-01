@@ -1,4 +1,3 @@
-const HTTPServer = require('../HTTPServer');
 const WebSocketServer = require('../WebSocketServer');
 const TopicConnectionManager = require('./TopicConnectionManager');
 const Publisher = require('./Publisher');
