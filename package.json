@@ -1,13 +1,26 @@
 {
 	"name": "pubsub",
 	"version": "1.0.0",
-	"description": "Publish-Subscribe server module",
+	"description": "Publish-Subscribe server",
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
 	"author": "Giovani Rubim Francisco <giovanirubim.f@gmail.com.br>",
-	"license": "ISC"
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/giovanirubim/pubsub.git"
+	},
+	"bugs": {
+		"url": "https://github.com/giovanirubim/pubsub/issues"
+	},
+	"homepage": "https://github.com/giovanirubim/pubsub#readme",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"express": "^4.17.1",
+		"mime-types": "^2.1.31",
+		"ws": "^7.5.1"
+	}
 }
