@@ -22,8 +22,6 @@ module.exports = class PubSubServer {
 			if (action === 'publish') {
 				publisher.publish({ topic, data });
 			}
-			const topics = topicConnectionManager.getConnectionTopics(connection);
-			connection.send({ topics });
 		});
 		webSocketServer.on('disconnect', (connection) => {
 			topicConnectionManager.removeConnection(connection);
