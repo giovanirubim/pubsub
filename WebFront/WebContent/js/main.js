@@ -60,7 +60,6 @@ $(document).ready(() => {
 	topic.remove();
 	topic.removeClass('topic-template');
 	topicTemplate = topic[0].outerHTML;
-	addTopic('Foz do Iguaçu');
 	$('input[type="button"]').on('click', () => {
 		const topic = $('input[type="text"]').val();
 		addTopic(topic);
