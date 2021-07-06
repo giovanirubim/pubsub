@@ -1,5 +1,10 @@
 const PubSubServer = require('./Interface/PubSubServer');
-const server = new PubSubServer({
+const WebFrontServer = require('./WebFrontServer')
+
+new PubSubServer({
 	webSocketPort: 9000,
-});
-server.start();
+}).start();
+
+new WebFrontServer({
+	port: 8080,
+}).start();
