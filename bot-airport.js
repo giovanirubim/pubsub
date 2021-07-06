@@ -7,7 +7,23 @@ if (topics.length === 0) {
 	process.exit(1);
 }
 
-const currentData = Object.fromEntries(topics.map((topic) => [topic, null]));
+const topicMap = Object.fromEntries(topics.map((topic) => [topic, null]));
+
+const refreshScreen = () => {
+	console.clear();
+	console.log('Subscribed to: ' + topics.map((topic) => `"${topic}"`).join(', '));
+	for (let topic in topicMap) {
+		console.log(`\n${topic}:`);
+		const data = topicMap[topic];
+		if (!data) {
+			console.log(' - No data received');
+			continue;
+		}
+		for (let field in data) {
+			console.log(` - ${field}: ${data[field]}`);
+		}
+	}
+};
 
 socket.on('open', () => {
 	topics.forEach((topic) => {
@@ -20,11 +36,11 @@ socket.on('open', () => {
 
 socket.on('message', (json) => {
 	const { topic, data } = JSON.parse(json);
-	currentData[topic] = {
+	topicMap[topic] = {
 		...data,
-		updatedAt: new Date().toString(),
+		'Updated at': new Date().toString(),
 	};
-	const formatted = JSON.stringify(currentData, null, '\x20');
-	console.clear();
-	console.log(formatted);
+	refreshScreen();
 });
+
+refreshScreen();

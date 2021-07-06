@@ -15,7 +15,10 @@ const publish = (data) => {
 		topic,
 		data,
 	});
-	console.log('publishing:', { topic, data });
+	console.log(`\nPublishing to "${topic}":`);
+	for (let field in data) {
+		console.log(` - ${field}: ${data[field]}`);
+	}
 	socket.send(json);
 };
 
