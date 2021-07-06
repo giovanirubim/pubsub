@@ -8,21 +8,25 @@ module.exports = class PubSubServer {
 		const topicConnectionManager = new TopicConnectionManager();
 		const publisher = new Publisher({ topicConnectionManager });
 		webSocketServer.on('connect', (connection) => {
+			console.log('A client connected');
 			topicConnectionManager.registerConnection(connection);
 		});
 		webSocketServer.on('message', (connection, { action, topic, data }) => {
-			console.log('received:', { action, topic, data });
 			if (action === 'subscribe') {
+				console.log(`A client subscribed to ${topic}`);
 				topicConnectionManager.addToTopic({ connection, topic });
 			}
 			if (action === 'unsubscribe') {
+				console.log(`A client unsubscribed from ${topic}`);
 				topicConnectionManager.removeFromTopic({ connection, topic });
 			}
 			if (action === 'publish') {
+				console.log(`A client published to ${topic}`);
 				publisher.publish({ topic, data });
 			}
 		});
 		webSocketServer.on('disconnect', (connection) => {
+			console.log('A client disconnected');
 			topicConnectionManager.removeConnection(connection);
 		});
 		this.webSocketServer = webSocketServer;
