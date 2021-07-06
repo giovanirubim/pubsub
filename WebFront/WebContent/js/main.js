@@ -56,13 +56,23 @@ const addTopic = (name) => {
 };
 
 $(document).ready(() => {
+	let input = $('input[type="text"]');
+	let button = $('input[type="button"]');
 	const topic = $('.topic-template');
 	topic.remove();
 	topic.removeClass('topic-template');
 	topicTemplate = topic[0].outerHTML;
-	$('input[type="button"]').on('click', () => {
-		const topic = $('input[type="text"]').val();
-		addTopic(topic);
+	button.on('click', () => {
+		addTopic(input.val());
+		input.val('');
+	});
+	input.on('keyup', (e) => {
+		if (e.key !== 'Enter') {
+			return;
+		}
+		if (!e.ctlrKey && !e.altKey && !e.shiftKey) {
+			button.trigger('click');
+		}
 	});
 	$('body').on('click', '.remove', function() {
 		const topic = $(this).closest('.topic');
