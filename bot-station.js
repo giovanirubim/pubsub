@@ -25,7 +25,7 @@ const publish = (data) => {
 const temperature = new RandomGenerator({
 	min: 0,
 	max: 40,
-	stability: 0.65,
+	stability: 0.9,
 });
 const windSpeed = new RandomGenerator({
 	min: 0,
