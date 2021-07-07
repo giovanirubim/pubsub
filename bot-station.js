@@ -38,12 +38,13 @@ const humidity = new RandomGenerator({
 	stability: 0.9,
 });
 
+const update = () => publish({
+	'Temperature': Math.round(temperature.next()) + '°C',
+	'Wind speed': Math.round(windSpeed.next()) + 'km/h',
+	'Humidity': Math.round(humidity.next()) + '%',
+});
+
 socket.on('open', () => {
-	setInterval(() => {
-		publish({
-			'Temperature': Math.round(temperature.next()) + '°C',
-			'Wind speed': Math.round(windSpeed.next()) + 'km/h',
-			'Humidity': Math.round(humidity.next()) + '%',
-		});
-	}, 3000);
+	update();
+	setInterval(update, 3000);
 });
