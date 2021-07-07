@@ -8,6 +8,7 @@ export const send = async (data) => {
 export const ondata = (handler) => {
 	ws.onmessage = ({ data: json }) => {
 		const data = JSON.parse(json);
+		console.log('data received', data);
 		handler(data);
 	};
 };

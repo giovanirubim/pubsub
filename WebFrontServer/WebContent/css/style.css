@@ -27,3 +27,23 @@ body {
 .topic-template {
 	display: none;
 }
+.info-line {
+	margin-bottom: 5px;
+}
+.info-line .label {
+	width: 100px;
+}
+.info-line .label,
+.info-line .input {
+	display: inline-block;
+}
+.info-line .input input {
+	width: 65px;
+}
+.box {
+	display: inline-block;
+}
+.info-line.submit {
+	margin-top: 15px;
+	text-align: center;
+}
