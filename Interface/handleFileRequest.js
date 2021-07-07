@@ -5,8 +5,7 @@ const mimeTypes = require('mime-types');
 module.exports = (root, req, res, next) => {
 	const requestPath = req.url
 		.replace(/[?#].*$/, '');
-	const filePath = path.join(root, requestPath)
-		.replace(/\/$/, '/index.html');
+	const filePath = path.join(root, requestPath.replace(/\/$/, '/index.html'));
 	try {
 		if (!fs.existsSync(filePath)) {
 			res.writeHead(404);
