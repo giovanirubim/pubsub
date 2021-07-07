@@ -1,12 +1,10 @@
-let topicTemplate = '';
-let ws = new WebSocket('ws://localhost:9000');
+import * as websocket from './websocket.js';
 
-ws.onmessage = ({ data: json }) => {
-	const now = new Date();
-	const { topic, data } = JSON.parse(json);
+websocket.ondata(({ topic, data }) => {
 	if (!topic) {
 		return;
 	}
+	const now = new Date();
 	const info = $(`[topic-name="${topic}"] .topic-info`);
 	info.html('');
 	for (let name in data) {
@@ -28,24 +26,19 @@ ws.onmessage = ({ data: json }) => {
 		now.getFullYear()
 	}`
 	info.closest('.topic').find('.timestamp').text(timestamp);
-};
+});
 
-const wsReady = new Promise((done) => ws.onopen = done);
-const send = async (data) => {
-	const json = JSON.stringify(data);
-	await wsReady;
-	ws.send(json);
-};
-
-const unsubscribe = (topic) => send({
+const unsubscribe = (topic) => websocket.send({
 	action: 'unsubscribe',
 	topic: topic,
 });
 
-const subscribe = (topic) => send({
+const subscribe = (topic) => websocket.send({
 	action: 'subscribe',
 	topic: topic,
 });
+
+let topicTemplate = '';
 
 const addTopic = (name) => {
 	$('body').append(topicTemplate);
