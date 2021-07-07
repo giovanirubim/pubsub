@@ -1,6 +1,6 @@
 import * as websocket from './websocket.js';
 
-const getData = () => {
+const publish = () => {
 	const suffixes = {
 		'Temperature': '°C',
 		'Wind Speed':  'km/h',
@@ -25,8 +25,5 @@ const getData = () => {
 };
 
 $(document).ready(() => {
-	$('input[type="button"]').on('click', () => {
-		const data = getData();
-		websocket.send({ action: 'publish', data });
-	});
+	$('input[type="button"]').on('click', publish);
 });
